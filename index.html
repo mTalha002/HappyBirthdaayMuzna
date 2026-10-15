@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        handwritten: ['Caveat', 'cursive'],
+                        sans: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        pastel: {
+                            pink: '#ffd1dc',
+                            peach: '#ffdac1',
+                            cream: '#fffdd0',
+                            purple: '#e2d1f9',
+                            white: '#ffffff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-pastel-pink text-gray-800 font-sans h-screen w-screen overflow-hidden relative">
+
+    <!-- Music Player -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="music-toggle" class="bg-white/50 backdrop-blur-md p-3 rounded-full shadow-lg text-pink-500 hover:scale-110 transition-transform flex items-center justify-center">
+            <svg id="music-icon-play" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+            <svg id="music-icon-pause" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+        </button>
+        <audio id="bg-music" loop>
+        <source src="music2.webm" type="audio/webm">
+    </audio>
+    <audio id="bg-music-main" loop>
+        <source src="music3.webm" type="audio/webm">
+    </audio>
+    <audio id="bg-music-note" loop>
+        <source src="music4.m4a" type="audio/mp4">
+    </audio>
+        <audio id="bg-music-box1" loop>
+        <source src="music5.m4a" type="audio/mp4">
+    </audio>
+        <audio id="bg-music-sec6" loop>
+        <source src="music6.m4a" type="audio/mp4">
+    </audio>
+    <audio id="bg-music-sec7" loop>
+        <source src="music7.m4a" type="audio/mp4">
+    </audio>
+      </div>
+
+      <!-- Floating Background Particles (Hearts) Container -->
+    <div id="particles-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- SECTION 1: MYSTERIOUS INTRODUCTION -->
+    <section id="sec-1" class="active-section absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 bg-gradient-to-br from-pastel-pink to-pastel-purple transition-opacity duration-1000">
+        <div class="max-w-md">
+            <h1 class="text-3xl md:text-4xl font-semibold mb-6 leading-relaxed text-gray-800 opacity-0 animate-fade-in-up" style="animation-delay: 0.5s;">
+                Aaj ka din baaki sabhi dinon jaisa nahi hai…
+            </h1>
+            <p class="text-xl md:text-2xl mb-12 opacity-0 animate-fade-in-up font-medium" style="animation-delay: 1.5s;">
+                Kyunki aaj kuch bahut special celebrate karna hai. ✨❤️
+            </p>
+            <p class="text-3xl md:text-4xl font-handwritten font-bold text-pink-600 mb-10 opacity-0 animate-fade-in-up" style="animation-delay: 2.5s;">
+                Pataa hai kya? 👀
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full opacity-0 animate-fade-in-up" style="animation-delay: 3.5s;">
+                <button onclick="nextSection(1, 2)" class="w-full sm:w-auto bg-white text-pink-500 font-bold py-3 px-6 rounded-3xl shadow-[0_0_15px_rgba(236,72,153,0.5)] hover:shadow-[0_0_25px_rgba(236,72,153,0.7)] transition-all transform hover:scale-105 active:scale-95 flex flex-col items-center justify-center">
+                    <span class="text-xl mb-1">YES ❤️</span>
+                    <span class="text-xs opacity-80">"Yes, jaanne ke liye click karo ❤️"</span>
+                </button>
+                <button onclick="showNoModal()" class="w-full sm:w-auto bg-white/60 backdrop-blur-md border border-white/50 text-gray-700 font-bold py-3 px-6 rounded-3xl shadow-lg hover:shadow-xl hover:bg-white hover:text-pink-500 transition-all transform hover:scale-105 active:scale-95 flex flex-col items-center justify-center">
+                    <span class="text-xl mb-1">NO 🙈</span>
+                    <span class="text-xs opacity-80">"Nahi, nahi jaan-na 😏"</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: BIRTHDAY REVEAL -->
+    <section id="sec-2" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 bg-gradient-to-tr from-pastel-peach to-pastel-pink transition-opacity duration-1000">
+        <div class="max-w-md w-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 opacity-0 scale-90 transition-all duration-1000 transform" id="s2-text1">
+                Kyuki aaj mere <span class="text-pink-600 font-handwritten text-5xl inline-block drop-shadow-sm">Muzna</span> ka...
+            </h2>
+            <h1 class="text-7xl md:text-8xl font-handwritten font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 mb-12 drop-shadow-lg opacity-0 scale-50 transition-all duration-1000 delay-500 transform py-2" id="s2-text2">
+                Birthday hai! 🎂❤️
+            </h1>
+            <button onclick="triggerCelebration()" class="opacity-0 transition-opacity duration-1000 delay-1000 inline-block bg-gradient-to-r from-pink-400 to-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105 active:scale-95" id="s2-btn">
+                Chalo ab Birthday celebrate karte hain 🎉
+            </button>
+        </div>
+    </section>
+
+    <!-- SECTION 3: BIRTHDAY CELEBRATION (Cinematic) -->
+    <section id="sec-3" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 bg-[#280915] transition-colors duration-[3000ms] overflow-hidden perspective-[1000px]">
+        
+        <!-- Fairy lights / Bokeh background -->
+        <div class="absolute inset-0 z-0 opacity-0 transition-opacity duration-[3000ms]" id="s3-bokeh">
+            <!-- CSS glowing orbs -->
+            <div class="absolute top-1/4 left-1/4 w-32 md:w-64 h-32 md:h-64 bg-pink-600/20 rounded-full blur-[60px] md:blur-[100px] animate-pulse-slow"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-40 md:w-80 h-40 md:h-80 bg-purple-600/20 rounded-full blur-[70px] md:blur-[120px] animate-pulse-slow" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-96 h-64 md:h-96 bg-yellow-500/10 rounded-full blur-[80px] md:blur-[150px] transition-all duration-[3000ms]" id="s3-center-glow"></div>
+        </div>
+
+        <!-- Particles Container (for JS to inject) -->
+        <div id="s3-particles" class="absolute inset-0 z-0 pointer-events-none"></div>
+
+        <!-- "Happy Birthday" Text (Behind Cake) -->
+        <div class="absolute top-6 md:top-10 left-0 w-full z-10 flex justify-center perspective-[1000px]">
+            <div class="relative inline-block">
+                <span class="absolute -top-6 left-[48%] -translate-x-1/2 text-4xl md:text-5xl text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.8)] z-20 animate-[bounce_2s_infinite]" id="s3-crown">👑</span>
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-handwritten font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-[#ffe4e6] to-[#fda4af] opacity-0 transform translate-z-[-100px] scale-90 transition-all duration-[2000ms] drop-shadow-[0_0_20px_rgba(236,72,153,0.8)]" id="s3-text">
+                    Happy Birthday ♡
+                </h1>
+            </div>
+        </div>
+
+        <!-- Decor Elements -->
+        <div id="s3-left-decor" class="absolute inset-0 pointer-events-none opacity-0 transform -translate-x-20 transition-all duration-[2000ms]">
+            <!-- Top Left Balloon Cluster -->
+            <div class="absolute -left-2 md:left-4 top-2 md:top-10 z-20 animate-float pointer-events-auto w-32 h-40 md:w-56 md:h-64">
+                <img src="images/balloons.png" class="w-full h-full object-contain drop-shadow-[0_10px_10px_rgba(255,0,0,0.4)] transform -rotate-12" alt="Balloon">
+            </div>
+
+            <!-- Middle Left Bouquet -->
+            <div class="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 z-20 animate-breathe w-28 h-40 md:w-48 md:h-72 bg-[#fcf5ef] p-2 md:p-3 rounded-2xl md:rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] pointer-events-auto transform -rotate-6 hover:rotate-0 transition-transform">
+                <img src="images/flower_bouquet.webp" class="w-full h-full object-cover filter rounded-xl md:rounded-2xl" alt="Bouquet">
+            </div>
+        </div>
+
+        <div id="s3-right-decor" class="absolute inset-0 pointer-events-none opacity-0 transform translate-x-20 transition-all duration-[2000ms]">
+            <!-- Top Right Balloon Cluster -->
+            <div class="absolute -right-2 md:right-4 top-2 md:top-10 z-20 animate-float pointer-events-auto w-32 h-40 md:w-56 md:h-64" style="animation-delay: 0.5s;">
+                <img src="images/balloons.png" class="w-full h-full object-contain drop-shadow-[0_10px_10px_rgba(255,0,0,0.4)] transform rotate-12 -scale-x-100" alt="Balloon">
+            </div>
+            
+            <!-- Middle Right Bouquet -->
+            <div class="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 z-20 animate-breathe w-28 h-40 md:w-48 md:h-72 bg-[#fcf5ef] p-2 md:p-3 rounded-2xl md:rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] pointer-events-auto transform rotate-6 hover:rotate-0 transition-transform" style="animation-delay: 0.8s;">
+                <img src="images/flower_bouquet.webp" class="w-full h-full object-cover filter rounded-xl md:rounded-2xl transform -scale-x-100" alt="Bouquet">
+            </div>
+        </div>
+
+        <!-- Center Stage: Cake & Button -->
+        <div class="relative z-30 flex flex-col items-center mt-12 md:mt-20 w-full justify-center">
+            
+            <!-- Cake Container -->
+            <div class="relative w-64 h-64 md:w-[24rem] md:h-[24rem] opacity-0 transform scale-75 transition-all duration-[2000ms]" id="s3-cake-container">
+                <!-- Glowing platform -->
+                <div class="absolute bottom-[-10px] left-1/2 -translate-x-1/2 w-[90%] h-8 md:h-12 bg-gradient-to-t from-pink-400/40 to-transparent blur-xl md:blur-2xl rounded-[100%]"></div>
+                
+                <img src="images/teddy_cake.png" alt="Teddy Bear Cake" class="w-full h-full object-contain relative z-10 drop-shadow-[0_15px_25px_rgba(0,0,0,0.5)]">
+                
+            </div>
+            
+            <button onclick="handleGiftClick()" class="opacity-0 transition-opacity duration-[2000ms] mt-6 md:mt-8 inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-pink-300/80 text-white font-medium text-sm md:text-base py-3 px-8 rounded-full shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:bg-white/10 hover:shadow-[0_0_20px_rgba(236,72,153,0.5)] transition-all transform hover:scale-105 active:scale-95 group" id="s3-btn">
+                <span>Ab bas karo, aage bhi badho… 😌</span>
+                <span class="inline-block transition-transform duration-300 group-hover:translate-x-1 animate-bounce">→</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- SECTION 4: PERSONAL BIRTHDAY NOTE -->
+    <section id="sec-4" class="hidden absolute inset-0 flex flex-col items-center justify-start p-6 py-12 md:py-20 z-10 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] bg-pastel-cream transition-opacity duration-1000 overflow-y-auto">
+        <div class="w-full max-w-lg mt-auto mb-6 bg-white/70 backdrop-blur-md p-8 md:p-10 rounded-2xl shadow-2xl border border-pink-100 relative opacity-0 transform translate-y-10 transition-all duration-1000" id="s4-card">
+            <!-- Decorative pin -->
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-pink-400 rounded-full shadow-md border-4 border-white flex items-center justify-center">
+                <div class="w-2 h-2 bg-pink-200 rounded-full"></div>
+            </div>
+            
+            <h2 class="text-4xl font-handwritten text-pink-600 mb-6 font-bold">To my favorite person,</h2>
+            <div class="min-h-[200px] text-xl md:text-2xl text-gray-700 leading-relaxed font-handwritten font-bold" id="typewriter-text">
+                <!-- Text typed via JS -->
+            </div>
+            <div class="mt-8 flex justify-end">
+                <span class="font-handwritten text-3xl text-pink-600 font-bold opacity-0 transition-opacity duration-1000" id="s4-signature">-❤️</span>
+            </div>
+        </div>
+        
+        <button onclick="nextSection(4, 6)" class="mt-10 mb-auto opacity-0 transition-opacity duration-1000 inline-block bg-gradient-to-r from-pink-400 to-purple-400 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105 active:scale-95" id="s4-btn">
+            Ab bas karo, aage bhi chalu… 🥰
+        </button>
+        
+    </section>
+
+            
+
+
+
+    <!-- SECTION 6: ONCE AGAIN -->
+    <section id="sec-6" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 bg-gradient-to-br from-[#ffe2ed] via-[#f9d2e1] to-[#f4c2d7] transition-opacity duration-1500 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 mix-blend-overlay"></div>
+        <div class="relative z-10 max-w-md w-full">
+            <h2 class="text-4xl md:text-5xl font-handwritten font-bold text-gray-700 mb-6 opacity-0 transition-all duration-1000 transform translate-y-5" id="s6-text1">
+                Once Again… ❤️
+            </h2>
+            <h1 class="text-7xl md:text-8xl font-handwritten font-bold text-pink-600 mb-12 drop-shadow-md opacity-0 transition-all duration-1000 delay-500 transform scale-90 py-2" id="s6-text2">
+                Happy Birthday, Muzna! 🎂✨
+            </h1>
+            <button onclick="nextSection(6, 7)" class="opacity-0 transition-opacity duration-1000 delay-1000 inline-block bg-white text-pink-500 font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105 active:scale-95 border border-pink-200" id="s6-btn">
+                Ek aakhiri baat... 🤫
+            </button>
+        </div>
+    </section>
+
+    <!-- SECTION 7: FINAL NOTE -->
+    <section id="sec-7" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 z-10 bg-gradient-to-b from-pastel-pink to-pastel-peach transition-opacity duration-1000">
+        <div class="w-full max-w-sm bg-white p-8 md:p-10 rounded-2xl shadow-2xl transform rotate-1 relative opacity-0 scale-95 transition-all duration-1000 border-2 border-white" id="s7-card">
+            <!-- Washi tape decoration -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-pink-200/60 rotate-[-2deg] shadow-sm"></div>
+            
+            <p class="text-3xl font-handwritten font-bold text-gray-700 mb-6 mt-4">
+                Heyy, I’m really sorry for wishing you late 🥹❤️ I know I’m late, but I still wanted to wish you a very happy birthday! 🥳🎂 May Allah bless you with lots of happiness, success, and good health, and may all your wishes come true. Stay happy and keep smiling always. Once again, happy belated birthday! ❤️🫶🏻
+            </p>
+            
+            
+            
+        </div>
+    </section>
+
+    <!-- NO Button Modal -->
+    <div id="no-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+        
+        <!-- Modal Content -->
+        <div id="no-modal-content" class="relative bg-white/90 backdrop-blur-xl border border-pink-200 p-8 rounded-[2rem] shadow-[0_0_40px_rgba(255,192,203,0.8)] max-w-sm w-11/12 text-center transform scale-90 transition-transform duration-300">
+            
+            <!-- Floating hearts decoration -->
+            <div class="absolute -top-6 -left-4 text-3xl animate-bounce" style="animation-delay: 0.1s; filter: drop-shadow(0 4px 6px rgba(255,192,203,0.5));">💖</div>
+            <div class="absolute -bottom-6 -right-4 text-3xl animate-bounce" style="animation-delay: 0.3s; filter: drop-shadow(0 4px 6px rgba(255,192,203,0.5));">💕</div>
+            <div class="absolute top-1/2 -right-8 text-2xl animate-bounce" style="animation-delay: 0.5s; filter: drop-shadow(0 4px 6px rgba(255,192,203,0.5));">💗</div>
+            <div class="absolute -bottom-4 left-8 text-2xl animate-bounce" style="animation-delay: 0.2s; filter: drop-shadow(0 4px 6px rgba(255,192,203,0.5));">💓</div>
+
+            <p class="text-4xl font-handwritten font-bold text-pink-600 mb-4">Areyy! 😭</p>
+            <p class="text-lg font-sans font-semibold text-gray-800 mb-2">Yahan NO par click karna sakht mana hai! 😂❤️</p>
+            <p class="text-lg font-sans font-medium text-gray-600 mb-8">Aapko YES hi karna padega madam ji 😌</p>
+            
+            <button onclick="handleModalYes()" class="inline-block bg-gradient-to-r from-pink-400 to-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-[0_0_15px_rgba(236,72,153,0.5)] hover:shadow-[0_0_25px_rgba(236,72,153,0.7)] transition-all transform hover:scale-105 active:scale-95">
+                Achha baba, YES ❤️
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
